@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +26,9 @@ import com.bezkoder.spring.data.mongodb.repository.TutorialRepository;
 @RestController
 @RequestMapping("/api")
 public class TutorialController {
+
+  @Value("${region}")
+  String region;
 
   @Autowired
   TutorialRepository tutorialRepository;
@@ -63,7 +67,7 @@ public class TutorialController {
   @PostMapping("/tutorials")
   public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
     try {
-      Tutorial _tutorial = tutorialRepository.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
+      Tutorial _tutorial = tutorialRepository.save(new Tutorial(this.region, tutorial.getTitle(), tutorial.getDescription(), false));
       return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

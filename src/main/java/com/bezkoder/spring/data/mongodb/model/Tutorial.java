@@ -8,6 +8,7 @@ public class Tutorial {
   @Id
   private String id;
 
+  private String region;
   private String title;
   private String description;
   private boolean published;
@@ -16,7 +17,8 @@ public class Tutorial {
 
   }
 
-  public Tutorial(String title, String description, boolean published) {
+  public Tutorial(String region, String title, String description, boolean published) {
+    this.region = region;
     this.title = title;
     this.description = description;
     this.published = published;
@@ -24,6 +26,14 @@ public class Tutorial {
 
   public String getId() {
     return id;
+  }
+
+  public String getRegion() {
+    return region;
+  }
+
+  public void setRegion(String region) {
+    this.region = region;
   }
 
   public String getTitle() {
