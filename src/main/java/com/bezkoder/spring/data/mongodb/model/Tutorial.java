@@ -2,8 +2,10 @@ package com.bezkoder.spring.data.mongodb.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Sharded;
 
 @Document(collection = "tutorials")
+@Sharded(shardKey = { "region", "title" })
 public class Tutorial {
   @Id
   private String id;
