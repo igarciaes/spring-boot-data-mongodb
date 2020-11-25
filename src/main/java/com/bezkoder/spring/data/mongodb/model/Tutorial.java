@@ -3,6 +3,8 @@ package com.bezkoder.spring.data.mongodb.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @Document(collection = "tutorials")
 public class Tutorial {
   @Id
@@ -18,6 +20,7 @@ public class Tutorial {
   }
 
   public Tutorial(String region, String title, String description, boolean published) {
+    this.id = UUID.randomUUID().toString();
     this.region = region;
     this.title = title;
     this.description = description;
